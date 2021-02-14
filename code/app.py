@@ -119,6 +119,31 @@ def Start_date(start_date):
 
     return jsonify(start_date_tobs)
 
+
+@app.route("/api/v1.0/<start_date>/<end_date>")
+def start_end_date(start_date, end_date):
+    session = Session(engine)
+
+    results = session.query(
+        func.min(Measurement.tobs), 
+        func.avg(Measurement.tobs), 
+        func.max(Measurement.tobs)).\
+        filter(Measurement.date >= start_date).\
+        filter(Measurement.date <=  end_date).all()
+        
+
+    start_end_tobs = []
+    for min, avg, max in results:
+        start_end_tobs_dict = {}
+        start_end_tobs_dict["TMIN"] = min
+        start_end_tobs_dict["TAVG"] = avg
+        start_end_tobs_dict["TMAX"] = max
+        start_end_tobs.append(start_end_tobs_dict)
+
+    session.close()
+
+    return jsonify(start_end_tobs)
+
    
     
 
