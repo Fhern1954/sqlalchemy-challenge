@@ -42,8 +42,8 @@ def welcome():
         f"/api/v1.0/precipitation<br/>"
         f"/api/v1.0/stations<br/>"
         f"/api/v1.0/tobs<br/>"
-        f"/api/v1.0/[start_date format:yyyy-mm-dd]<br/>"
-        f"/api/v1.0/[start_date format:yyyy-mm-dd]/[end_date format:yyyy-mm-dd]"
+        f"/api/v1.0/[start_date format:yyyy-mm-dd]<br/>" #From: https://github.com/goldenb85/sqlalchemy-challenge/blob/master/app.py
+        f"/api/v1.0/[start_date format:yyyy-mm-dd]/[end_date format:yyyy-mm-dd]" #From: https://github.com/goldenb85/sqlalchemy-challenge/blob/master/app.py
     )
 
 @app.route("/api/v1.0/precipitation")
